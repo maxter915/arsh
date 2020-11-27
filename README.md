@@ -2,7 +2,7 @@
 
 Start arsh installer:
 
-`git clone https://github.com/maxter915/arsh`
+`git clone https://github.com/maxter915/arch`
 
 - chmod +777 arsh `./arsh`
 - chmod +777 lilo `./lilo`
@@ -11,8 +11,8 @@ Start arsh installer:
 
 
 ## How to use
-- ARSH` [System Base]: `cd arsh ; ./arsh`
-- LILO [The Rest]: `cd arsh ; ./lilo`
+- ARSH` [System Base]: `cd arch ; ./arsh`
+- LILO [The Rest]: `cd arch ; ./lilo`
 
 ## Features
 ### ARSH` SCRIPT

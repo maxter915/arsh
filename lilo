@@ -165,7 +165,7 @@ select_user(){
   configure_user_account(){
     #BASHRC {{{
     print_title "BASHRC - https://wiki.archlinux.org/index.php/Bashrc"
-    bashrc_list=("Get helmuthdu .bashrc from github" "Vanilla .bashrc" "Get personal .bashrc from github");
+    bashrc_list=("Vanilla .bashrc");
     PS3="$prompt1"
     echo -e "Choose your .bashrc\n"
     select OPT in "${bashrc_list[@]}"; do

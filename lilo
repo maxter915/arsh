@@ -3,28 +3,6 @@
 #shellcheck disable=SC1001,SC1091,SC2001,SC2010,SC2015,SC2034,SC2104,SC2154
 #shellcheck disable=SC2154,SC2153,SC2155,SC2165,SC2167,SC2181,SC2207
 
-: 'ATTENTION!:
---------------------------------------------------
-|  Created by helmuthdu <helmuthdu@gmail.com>    |
-|  Contributed by flexiondotorg                  |
-|  Shellchecked by uniminin <uniminin@zoho.com>  |
---------------------------------------------------
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-------------------------------------------------------------------------
-Run this script after your first boot with archlinux (as root)
-'
-
 if [[ -f $(pwd)/sharedfuncs ]]; then
   source sharedfuncs
 else
@@ -36,7 +14,7 @@ fi
 #WELCOME {{{
 welcome(){
   clear
-  echo -e "${Bold}Welcome to the Archlinux U Install script by helmuthdu${White}"
+  echo -e "${Bold}Welcome to the Archlinux U Install script by Maxter915${White}"
   print_line
   echo "Requirements:"
   echo "-> Archlinux installation"
@@ -45,7 +23,7 @@ welcome(){
   print_line
   echo "Script can be cancelled at any time with CTRL+C"
   print_line
-  echo "http://www.github.com/helmuthdu/aui"
+  echo "https://github.com/maxter915/arch"
   print_line
   echo -e "\nBackups:"
   print_line
@@ -193,26 +171,10 @@ select_user(){
     select OPT in "${bashrc_list[@]}"; do
       case "$REPLY" in
         1)
-          package_install "git"
-          package_install "colordiff"
-          git clone https://github.com/helmuthdu/dotfiles
-          cp dotfiles/.bashrc dotfiles/.dircolors dotfiles/.dircolors_256 dotfiles/.nanorc dotfiles/.yaourtrc ~/
-          cp dotfiles/.bashrc dotfiles/.dircolors dotfiles/.dircolors_256 dotfiles/.nanorc dotfiles/.yaourtrc /home/"${username}"/
-          rm -fr dotfiles
-          ;;
-        2)
+     
           cp /etc/skel/.bashrc /home/"${username}"
           ;;
-        3)
-          package_install "git"
-          printf "%s" "Enter your github username [ex: helmuthdu]: " 
-          read -r GITHUB_USER
-          printf "%s" "Enter your github repository [ex: aui]: "
-          read -r GITHUB_REPO
-          git clone https://github.com/"$GITHUB_USER"/"$GITHUB_REPO"
-          cp -R "$GITHUB_REPO"/.* /home/"${username}"/
-          rm -fr "$GITHUB_REPO"
-          ;;
+       
         *)
           invalid_option
           ;;
@@ -237,30 +199,7 @@ select_user(){
             select OPT in "${vimrc_list[@]}"; do
               case "$REPLY" in
                 1)
-                  package_install "git"
-                  git clone https://github.com/helmuthdu/vim /home/"${username}"/.vim
-                  ln -sf /home/"${username}"/.vim/vimrc /home/"${username}"/.vimrc
-                  cp -R vim /home/"${username}"/.vim/fonts /home/"${username}"/.fonts
-                  mkdir /home/"${username}"/.vim/colors
-                  curl -fsSL -o /home/"${username}"/.vim/colors/tender.vim https://raw.githubusercontent.com/jacoborus/tender.vim/master/colors/tender.vim 
-                  GRUVBOX_NEEDED=1
-                  ;;
-                3)
-                  package_install "git"
-                  printf "%s" "Enter your github username [ex: helmuthdu]: "
-                  read -r GITHUB_USER
-                  printf "%s" "Enter your github repository [ex: vim]: "
-                  read -r GITHUB_REPO
-                  git clone https://github.com/"$GITHUB_USER"/"$GITHUB_REPO"
-                  cp -R "$GITHUB_REPO"/.vim /home/"${username}"/
-                  if [[ -f $GITHUB_REPO/vimrc ]]; then
-                    ln -sf /home/"${username}"/.vim/vimrc /home/"${username}"/.vimrc
-                  else
-                    ln -sf /home/"${username}"/.vim/.vimrc /home/"${username}"/.vimrc
-                  fi
-                  rm -fr "$GITHUB_REPO"
-                  ;;
-                2)
+             
                   echo "Nothing to do..."
                   ;;
                 *)
@@ -286,21 +225,11 @@ select_user(){
                 select OPT in "${emacsd_list[@]}"; do
                     case "$REPLY" in
                         1)
-                            package_install "git"
-                            git clone https://github.com/syl20bnr/spacemacs /home/"${username}"/.emacs.d
-                            ;;
-                        2)
+                  
                             package_install "git"
                             git clone --depth 1 https://github.com/seagle0128/.emacs.d.git /home/"${username}"/.emacs.d
                             ;;
-                        3)
-                            package_install "git"
-                            printf "%s" "Enter your github username [ex: helmuthdu]: "
-                            read -r GITHUB_USER
-                            printf "%s" "Enter your github repository [ex: vim]: "
-                            read -r GITHUB_REPO
-                            git clone https://github.com/"$GITHUB_USER"/"$GITHUB_REPO" /home/"${username}"/.emacs.d
-                            ;;
+                      
                         4)
                             echo "Nothing to do..."
                             ;;
